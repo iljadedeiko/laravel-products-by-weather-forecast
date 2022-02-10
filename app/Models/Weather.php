@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Weather extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['condition'];
+
+    public function product()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }
