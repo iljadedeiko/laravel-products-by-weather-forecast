@@ -13,6 +13,12 @@ class Product extends Model
 
     public function weather()
     {
-        return $this->belongsToMany(Weather::class);
+        return $this->belongsToMany
+        (
+            Weather::class,
+            'product_weather',
+            'product_id',
+            'weather_id'
+        );
     }
 }

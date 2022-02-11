@@ -12,11 +12,10 @@ class WeatherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($city)
     {
-        $city = 'vilnius';
         $weather = Http::get('https://api.meteo.lt/v1/places/'.$city.'/forecasts/long-term/')
-            ->json();
+            ->json()['forecastTimestamps'][0];
 
         dd($weather);
 

@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WeatherController::class, 'index']);
+Route::get('/products/recommended/{city}', [WeatherController::class, 'index']);
