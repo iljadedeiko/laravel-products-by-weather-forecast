@@ -10,6 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'sku', 'price'];
+    public $timestamps = false;
 
     public function weather()
     {

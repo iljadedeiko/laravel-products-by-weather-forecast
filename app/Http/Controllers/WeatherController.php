@@ -14,10 +14,12 @@ class WeatherController extends Controller
      */
     public function index($city)
     {
-        $weather = Http::get('https://api.meteo.lt/v1/places/'.$city.'/forecasts/long-term/')
-            ->json()['forecastTimestamps'][0];
+        $request = Http::get('https://api.meteo.lt/v1/places/'.$city.'/forecasts/long-term/')
+            ->json();
 
-        dd($weather);
+        $weatherCondition = $request['forecastTimestamps'][0]['conditionCode'];
+
+        dd($weatherCondition);
 
         return view('index');
     }
