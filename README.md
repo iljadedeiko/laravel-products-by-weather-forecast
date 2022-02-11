@@ -1,2 +1,2 @@
-# laravel-weather-forecast
+# laravel-products-by-weather-forecast
 A service that gives product recommendations based on the weather forecast.
