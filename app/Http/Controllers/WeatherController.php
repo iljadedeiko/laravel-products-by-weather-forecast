@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 
 class WeatherController extends Controller
@@ -12,13 +13,23 @@ class WeatherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($city)
+    public function index(string $city)
     {
-        $request = Http::get('https://api.meteo.lt/v1/places/'.$city.'/forecasts/long-term/')
+        $request = Http::get("https://api.meteo.lt/v1/places/{$city}/forecasts/long-term/")
             ->json();
-        $weatherCondition = $request['forecastTimestamps'][0]['conditionCode'];
 
-        return $weatherCondition;
+        $currentDate = Carbon::now()->addDays(3)->format('Y-m-d');
+
+        $conditions = collect();
+        foreach ($request['forecastTimestamps'] as $timestamp) {
+            $date = substr($timestamp['forecastTimeUtc'], 0, 10);
+            if (!$conditions->has($date) && $date < $currentDate) {
+                $conditions->put($date, $timestamp['conditionCode']);
+            }
+        }
+        dd($conditions);
+
+//        return $weatherConditions;
     }
 
     /**
