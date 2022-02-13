@@ -12,14 +12,8 @@ class Weather extends Model
     protected $fillable = ['condition'];
     public $timestamps = false;
 
-    public function product()
+    public function products()
     {
-        return $this->belongsToMany
-        (
-            Product::class,
-            'product_weather',
-            'weather_id',
-            'product_id'
-        );
+        return $this->belongsToMany(Product::class);
     }
 }

@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
-class WeatherController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($city)
+    public function index()
     {
-        $request = Http::get('https://api.meteo.lt/v1/places/'.$city.'/forecasts/long-term/')
-            ->json();
-        $weatherCondition = $request['forecastTimestamps'][0]['conditionCode'];
+        $products = Product::all('name', 'sku', 'price');
 
-        return $weatherCondition;
+        return $products;
     }
 
     /**
@@ -29,7 +27,7 @@ class WeatherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

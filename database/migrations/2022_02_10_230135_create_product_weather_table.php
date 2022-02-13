@@ -14,9 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product_weather', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedBigInteger('weather_id');
+            $table->primary(['weather_id', 'product_id']);
             $table->unsignedBigInteger('product_id');
+            $table->unsignedTinyInteger('weather_id');
+
+            $table->foreign('product_id')->references('id')->on('products')
+                ->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('weather_id')->references('id')->on('weather')
+                ->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
 
