@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 
-class WeatherController extends Controller
+class ProductController extends Controller
 {
-    public function index(string $city)
+    public function getByWeatherConditions(string $city)
     {
         $request = Http::get("https://api.meteo.lt/v1/places/{$city}/forecasts/long-term/")
             ->json();
