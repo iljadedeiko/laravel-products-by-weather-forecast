@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
@@ -11,8 +12,12 @@ class ProductController extends Controller
 {
     public function getByWeatherConditions(string $city)
     {
-        $request = Http::get("https://api.meteo.lt/v1/places/{$city}/forecasts/long-term/")
-            ->json();
+        try {
+            $request = Http::get("https://api.meteo.lt/v1/places/{$city}/forecasts/long-term/")
+                ->json();
+        } catch (Exception $e) {
+            throw new \Exception($e->getCode());
+        }
 
         //current date +3 days
         $maxDate = Carbon::now()->addDays(3)->format('Y-m-d');
