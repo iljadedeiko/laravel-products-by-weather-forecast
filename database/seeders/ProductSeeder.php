@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $products = Product::factory()->count(15)->create();
+        $products = Product::factory()->count(50)->create();
         $weatherIds = Weather::pluck('id');
 
         foreach ($products as $product) {

@@ -25,6 +25,7 @@ class ProductController extends Controller
         }
 
         return response()->json([
+            'weather_data_source' => 'https://api.meteo.lt/',
             'city' => $city,
             'recommendations' => $conditions->map(fn($condition) => [
                 'weather_forecast' => $condition['code'],
