@@ -14,12 +14,13 @@ class ProductController extends Controller
         $request = Http::get("https://api.meteo.lt/v1/places/{$city}/forecasts/long-term/")
             ->json();
 
-        $currentDate = Carbon::now()->addDays(3)->format('Y-m-d');
+        //current date +3 days
+        $maxDate = Carbon::now()->addDays(3)->format('Y-m-d');
 
         $conditions = collect();
         foreach ($request['forecastTimestamps'] as $timestamp) {
             $date = substr($timestamp['forecastTimeUtc'], 0, 10);
-            if (!$conditions->has($date) && $date < $currentDate) {
+            if (!$conditions->has($date) && $date < $maxDate) {
                 $conditions->put($date, ['code' => $timestamp['conditionCode'], 'date' => $date]);
             }
         }
