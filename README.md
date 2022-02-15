@@ -68,17 +68,19 @@ Example of a JSON response:
    "recommendations":[
       {
          "weather_forecast":"clear",
-         "date":"2022-02-14",
-         "products":[
-            
-         ]
-      },
-      {
-         "weather_forecast":"clear",
          "date":"2022-02-15",
-         "products":[
-            
-         ]
+         "products":{
+            "1":{
+               "sku":"TLP-25",
+               "name":"Lime Voluptas",
+               "price":5.2
+            },
+            "3":{
+               "sku":"SXW-50",
+               "name":"Lavender Aut",
+               "price":26.34
+            }
+         }
       },
       ...
 ```
