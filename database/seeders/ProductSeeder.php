@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
         $weatherIds = Weather::pluck('id');
 
         foreach ($products as $product) {
-            $product->weather()->attach($weatherIds->shuffle()->splice(0, rand(1, 3)));
+            $product->weather()->attach($weatherIds->shuffle()->splice(0, 1));
         }
     }
 }
