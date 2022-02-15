@@ -6,24 +6,27 @@ use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
 {
+    private $weatherObj;
+
+    public function __construct() {
+        $this->weatherObj = new WeatherController();
+    }
+
     public function getByWeatherConditions(string $city)
     {
-        try {
-            $request = Http::get("https://api.meteo.lt/v1/places/{$city}/forecasts/long-term/")
-                ->json();
-        } catch (Exception $e) {
-            throw new \Exception($e->getCode());
-        }
+        $this->weatherObj = new WeatherController();
+        $response = $this->weatherObj->weatherDataRequest($city);
 
         //current date +3 days
         $maxDate = Carbon::now()->addDays(3)->format('Y-m-d');
 
         $conditions = collect();
-        foreach ($request['forecastTimestamps'] as $timestamp) {
+        foreach ($response['forecastTimestamps'] as $timestamp) {
             $date = substr($timestamp['forecastTimeUtc'], 0, 10);
             if (!$conditions->has($date) && $date < $maxDate) {
                 $conditions->put($date, ['code' => $timestamp['conditionCode'], 'date' => $date]);
