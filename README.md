@@ -1,5 +1,5 @@
 # RESTful API for products by weather forecast using Laravel Framework
-A service that gives product recommendations based on the weather forecast.
+A service that gives recommendations on products based on the weather forecast in the selected city of Lithuania.
 
 <h2>Challenge description</h2>
 Create a service, which returns product recommendations depending on the weather forecast.
