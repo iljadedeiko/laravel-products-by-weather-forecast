@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('weather', function (Blueprint $table) {
-            $table->increments('id');
+            $table->tinyIncrements('id');
             $table->string('condition');
         });
     }

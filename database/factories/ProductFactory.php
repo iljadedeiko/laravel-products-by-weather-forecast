@@ -21,9 +21,9 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'sku' => strtoupper(Str::random(rand(2,3))).'-'.$this->faker->unique()->numberBetween(1, 99),
+            'sku' => strtoupper($this->faker->bothify('???')).'-'.$this->faker->unique()->numberBetween(1, 99),
             'name' => $this->faker->colorName().' '.ucfirst($this->faker->word()),
-            'price' => $this->faker->randomFloat(2, 5, 200),
+            'price' => rand(500, 3000)
         ];
     }
 }

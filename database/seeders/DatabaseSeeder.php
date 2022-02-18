@@ -17,5 +17,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Product::factory()->count(15)->create();
+
+        $this->call([
+            WeatherSeeder::class,
+            ProductSeeder::class
+        ]);
     }
 }

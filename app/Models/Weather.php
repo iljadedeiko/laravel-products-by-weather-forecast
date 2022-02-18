@@ -12,7 +12,7 @@ class Weather extends Model
     protected $fillable = ['condition'];
     public $timestamps = false;
 
-    public function product()
+    public function products()
     {
         return $this->belongsToMany(Product::class);
     }
