@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -17,7 +18,7 @@ class ProductController extends Controller
         $this->weatherObj = new WeatherController();
     }
 
-    public function getByWeatherConditions(string $city)
+    public function getByWeatherConditions(string $city): JsonResponse
     {
         $this->weatherObj = new WeatherController();
         $response = $this->weatherObj->weatherDataRequest($city);
