@@ -84,9 +84,3 @@ Example of a JSON response:
       },
       ...
 ```
-
-<h2>Deployment on Heroku</h2>
-Link to the application hosted on the Heroku platform: <br>
-https://still-reef-93723.herokuapp.com/api/v1/products/recommended/vilnius <br><br>
-
-<p>The application uses MySQL, and on the Heroku platform, only PostgreSQL can be used freely (without the need to link a bank card to an account), so at the moment only weather data is provided.</p>
